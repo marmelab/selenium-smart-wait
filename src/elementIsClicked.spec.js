@@ -1,7 +1,7 @@
 import expect, { createSpy } from 'expect';
 import { checkElementIsClickedFactory } from './elementIsClicked';
 
-describe('elementValueIs', () => {
+describe('elementIsClicked', () => {
     const driver = 'driver';
 
     const waitTimeout = 10000;
