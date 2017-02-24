@@ -4,16 +4,9 @@ export const transformElementConditionFactory = getWebElementImpl =>
     conditionRequiringElement =>
         (elementOrLocator, ...args) =>
             async (driver) => {
-                let waitTimeout;
-                let conditionArgs = [];
+                const element = await getWebElementImpl(elementOrLocator, driver);
 
-                if (args.length > 0) {
-                    waitTimeout = args[args.length - 1];
-                    conditionArgs = args.slice(0, args.length - 1);
-                }
-                const element = await getWebElementImpl(elementOrLocator, driver, waitTimeout);
-
-                return conditionRequiringElement(element, ...conditionArgs);
+                return conditionRequiringElement(element, ...args);
             };
 
 export default transformElementConditionFactory(getWebElement);

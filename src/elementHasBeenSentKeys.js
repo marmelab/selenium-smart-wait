@@ -2,9 +2,9 @@ import { Condition } from 'selenium-webdriver';
 import getWebElement from './getWebElement';
 
 export const checkElementHasBeenSentKeysFactory = getWebElementImpl =>
-    (elementOrLocator, waitTimeout) =>
+    elementOrLocator =>
         async (driver) => {
-            const element = await getWebElementImpl(elementOrLocator, driver, waitTimeout);
+            const element = await getWebElementImpl(elementOrLocator, driver);
 
             const [isDisplayed, isEnabled, tagName] = await Promise.all([
                 element.isDisplayed(),
@@ -25,7 +25,7 @@ export const checkElementHasBeenSentKeysFactory = getWebElementImpl =>
         };
 
 export const elementHasBeenSentKeysFactory = checkElementHasBeenSentKeys =>
-    (elementOrLocator, waitTimeout) =>
-        new Condition('until element has been sent keys', checkElementHasBeenSentKeys(elementOrLocator, waitTimeout));
+    elementOrLocator =>
+        new Condition('until element has been sent keys', checkElementHasBeenSentKeys(elementOrLocator));
 
 export default elementHasBeenSentKeysFactory(checkElementHasBeenSentKeysFactory(getWebElement));

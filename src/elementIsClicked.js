@@ -2,9 +2,9 @@ import { Condition } from 'selenium-webdriver';
 import getWebElement from './getWebElement';
 
 export const checkElementIsClickedFactory = getWebElementImpl =>
-    (elementOrLocator, waitTimeout) =>
+    elementOrLocator =>
         async (driver) => {
-            const element = await getWebElementImpl(elementOrLocator, driver, waitTimeout);
+            const element = await getWebElementImpl(elementOrLocator, driver);
 
             const [isDisplayed, isEnabled] = await Promise.all([
                 element.isDisplayed(),
@@ -20,7 +20,7 @@ export const checkElementIsClickedFactory = getWebElementImpl =>
         };
 
 export const elementIsClickedFactory = checkElementIsClicked =>
-    (elementOrLocator, waitTimeout) =>
-        new Condition('until element is clicked', checkElementIsClicked(elementOrLocator, waitTimeout));
+    elementOrLocator =>
+        new Condition('until element is clicked', checkElementIsClicked(elementOrLocator));
 
 export default elementIsClickedFactory(checkElementIsClickedFactory(getWebElement));
