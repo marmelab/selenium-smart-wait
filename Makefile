@@ -17,7 +17,6 @@ test:
 		--opts ./mocha.opts \
 		"./src/**/*.spec.js"
 
-
 watch-test:
 	NODE_ENV=test ./node_modules/.bin/nyc \
 		./node_modules/.bin/mocha \
