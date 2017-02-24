@@ -43,6 +43,21 @@ especially the `findElement` and `findElements` methods).
 - `elementIsClicked`: wait until the element has been successfully clicked.
 - `elementHasBeenSentKeys`: wait until the element has successfully been sent keys clicked.
 
+Some conditions from `selenium-webdriver` have also been added but you can now pass them a `locator` too (please refer to the
+selenium webdriver [documentation](http://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/lib/until.html)
+for details about them):
+
+- `elementIsDisabled`
+- `elementIsEnabled`
+- `elementIsNotSelected`
+- `elementIsNotVisible`
+- `elementIsSelected`
+- `elementIsVisible`
+- `elementTextContains`
+- `elementTextIs`
+- `elementTextMatches`
+- `stalenessOf`
+
 ## Contributing
 
 Coverage data is available in `./coverage` after executing `make test`.
