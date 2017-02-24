@@ -9,8 +9,8 @@ export const checkElementsCountIsFactory = getWebElementsImpl =>
             return Promise.resolve(elements && elements.length === count);
         };
 
-export const elementIsClickedFactory = checkElementsCountIs =>
+export const elementsCountIsFactory = checkElementsCountIs =>
     (elementOrLocator, count, waitTimeout) =>
-        new Condition('until element is clicked', checkElementsCountIs(elementOrLocator, count, waitTimeout));
+        new Condition('until elements count is', checkElementsCountIs(elementOrLocator, count, waitTimeout));
 
-export default elementIsClickedFactory(checkElementsCountIsFactory(getWebElements));
+export default elementsCountIsFactory(checkElementsCountIsFactory(getWebElements));
