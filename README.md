@@ -49,7 +49,6 @@ Some conditions from `selenium-webdriver` have also been added but you can now p
 selenium webdriver [documentation](http://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/lib/until.html)
 for details about them):
 
-- `elementLocated`
 - `elementIsDisabled`
 - `elementIsEnabled`
 - `elementIsNotSelected`

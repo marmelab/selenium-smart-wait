@@ -6,7 +6,6 @@ export { default as elementHasBeenSentKeys } from './elementHasBeenSentKeys';
 export { default as elementIsClicked } from './elementIsClicked';
 export { default as elementValueIs } from './elementValueIs';
 
-export const elementLocated = transformElementCondition(until.elementLocated);
 export const elementIsDisabled = transformElementCondition(until.elementIsDisabled);
 export const elementIsEnabled = transformElementCondition(until.elementIsEnabled);
 export const elementIsNotSelected = transformElementCondition(until.elementIsNotSelected);
