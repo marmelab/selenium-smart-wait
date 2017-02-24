@@ -35,8 +35,8 @@ await driver.wait(elementValueIs(By.css('.my-input'), 'expected value'), TIMEOUT
 ```
 
 All conditions expect either an existing [WebElement](http://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index_exports_WebElement.html)
-or a `locator` (see selenium webdriver documentation on [WebDriver](http://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index_exports_WebDriver.html),
-especially the `findElement` and `findElements` methods).
+, a `locator` such as `By.css('.my_css_class')` (see selenium webdriver documentation on [WebDriver](http://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index_exports_WebDriver.html),
+especially the `findElement` and `findElements` methods) or a string. If a string is given, it will be considered as a css selector.
 
 ## API
 

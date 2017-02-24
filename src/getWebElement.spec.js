@@ -1,5 +1,5 @@
 import expect, { createSpy } from 'expect';
-import { By, until, WebElement } from 'selenium-webdriver';
+import { until, By, WebElement } from 'selenium-webdriver';
 import getWebElement from './getWebElement';
 
 describe('getWebElement', () => {
@@ -19,18 +19,26 @@ describe('getWebElement', () => {
         expect(result).toBe(element);
     });
 
-    it('waits for the element with the given selector to be located', async () => {
-        const selector = By.css('.foo');
+    it('calls driver.wait with a css locator if given a string', async () => {
+        const locator = '.foo';
 
-        await getWebElement(selector, driver);
+        await getWebElement(locator, driver);
 
-        expect(driver.wait).toHaveBeenCalledWith(until.elementLocated(selector));
+        expect(driver.wait).toHaveBeenCalledWith(until.elementLocated(By.css(locator)));
     });
 
-    it('returns the element with the given selector to be located', async () => {
-        const selector = By.css('.foo');
+    it('waits for the element with the given locator to be located', async () => {
+        const locator = By.css('.foo');
 
-        const result = await getWebElement(selector, driver);
+        await getWebElement(locator, driver);
+
+        expect(driver.wait).toHaveBeenCalledWith(until.elementLocated(locator));
+    });
+
+    it('returns the element with the given locator to be located', async () => {
+        const locator = By.css('.foo');
+
+        const result = await getWebElement(locator, driver);
 
         expect(result).toBe(locatedElement);
     });
