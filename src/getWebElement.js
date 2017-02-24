@@ -1,11 +1,17 @@
-import { until, WebElement } from 'selenium-webdriver';
+import { until, By, WebElement } from 'selenium-webdriver';
 
-export default async (elementOrSelector, driver) => {
-    if (elementOrSelector instanceof WebElement) {
-        return elementOrSelector;
+export default async (elementOrLocator, driver) => {
+    if (elementOrLocator instanceof WebElement) {
+        return elementOrLocator;
     }
 
-    await driver.wait(until.elementLocated(elementOrSelector));
+    let locator = elementOrLocator;
 
-    return driver.findElement(elementOrSelector);
+    if (typeof elementOrLocator === 'string') {
+        locator = By.css(elementOrLocator);
+    }
+
+    await driver.wait(until.elementLocated(locator));
+
+    return driver.findElement(locator);
 };

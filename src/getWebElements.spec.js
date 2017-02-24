@@ -19,18 +19,26 @@ describe('getWebElements', () => {
         expect(result).toEqual([element]);
     });
 
-    it('waits for the element with the given selector to be located', async () => {
-        const selector = By.css('.foo');
+    it('calls driver.wait with a css locator if given a string', async () => {
+        const locator = '.foo';
 
-        await getWebElements(selector, driver);
+        await getWebElements(locator, driver);
 
-        expect(driver.wait).toHaveBeenCalledWith(until.elementLocated(selector));
+        expect(driver.wait).toHaveBeenCalledWith(until.elementLocated(By.css(locator)));
     });
 
-    it('returns the element with the given selector to be located', async () => {
-        const selector = By.css('.foo');
+    it('waits for the element with the given locator to be located', async () => {
+        const locator = By.css('.foo');
 
-        const result = await getWebElements(selector, driver);
+        await getWebElements(locator, driver);
+
+        expect(driver.wait).toHaveBeenCalledWith(until.elementLocated(locator));
+    });
+
+    it('returns the element with the given locator to be located', async () => {
+        const locator = By.css('.foo');
+
+        const result = await getWebElements(locator, driver);
         expect(result).toEqual([locatedElement]);
     });
 });
