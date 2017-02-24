@@ -23,7 +23,6 @@ addons:
 cache:
     yarn: true
     directories:
-        - $(npm config get prefix)/bin/grunt-cli
         - node_modules
 
 before_install:
