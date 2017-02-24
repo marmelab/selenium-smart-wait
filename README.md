@@ -21,6 +21,17 @@ yarn add --dev selenium-smart-wait
 
 ## Usage
 
+Simply import the exported conditions and pass them to `driver.wait`:
+
+```js
+import { elementValueIs } from 'selenium-smart-wait';
+import { By } from 'selenium-webdriver';
+
+// ... mocha, jasmine, whatever ...
+await driver.wait(elementValueIs(By.css('.my-input'), 'expected value'));
+
+```
+
 ## Contributing
 
 Coverage data is available in `./coverage` after executing `make test`.
