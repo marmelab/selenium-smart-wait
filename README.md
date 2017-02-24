@@ -40,6 +40,7 @@ especially the `findElement` and `findElements` methods).
 
 - `elementValueIs`: wait until the element has the specified value. *You should only pass input elements to this condition.*
 - `elementIsClicked`: wait until the element has been successfully clicked.
+- `elementHasBeenSentKeys`: wait until the element has successfully been sent keys clicked.
 
 ## Contributing
 
