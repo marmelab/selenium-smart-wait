@@ -4,8 +4,6 @@ import { checkElementValueIsFactory } from './elementValueIs';
 describe('elementValueIs', () => {
     const driver = 'driver';
 
-    const waitTimeout = 10000;
-
     describe('checkElementValueIs', () => {
         it('gets the webelement', async () => {
             const element = {
@@ -14,9 +12,9 @@ describe('elementValueIs', () => {
             const getWebElement = createSpy().andReturn(element);
             const checkElementValueIs = checkElementValueIsFactory(getWebElement);
 
-            await checkElementValueIs(element, 'foo', waitTimeout)(driver);
+            await checkElementValueIs(element, 'foo')(driver);
 
-            expect(getWebElement).toHaveBeenCalledWith(element, driver, waitTimeout);
+            expect(getWebElement).toHaveBeenCalledWith(element, driver);
         });
 
         it('resolves to true if value matches expected one', async () => {
@@ -26,7 +24,7 @@ describe('elementValueIs', () => {
             const getWebElement = createSpy().andReturn(element);
             const checkElementValueIs = checkElementValueIsFactory(getWebElement);
 
-            const result = await checkElementValueIs(element, 'foo', waitTimeout)(driver);
+            const result = await checkElementValueIs(element, 'foo')(driver);
 
             expect(result).toBe(true);
         });
@@ -38,7 +36,7 @@ describe('elementValueIs', () => {
             const getWebElement = createSpy().andReturn(element);
             const checkElementValueIs = checkElementValueIsFactory(getWebElement);
 
-            const result = await checkElementValueIs(element, 'foo', waitTimeout)(driver);
+            const result = await checkElementValueIs(element, 'foo')(driver);
 
             expect(result).toBe(false);
         });

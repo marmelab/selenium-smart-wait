@@ -4,17 +4,15 @@ import { checkElementsCountIsFactory } from './elementsCountIs';
 describe('elementsCountIs', () => {
     const driver = 'driver';
 
-    const waitTimeout = 10000;
-
     describe('checkElementsCountIs', () => {
         it('gets the webelements', async () => {
             const elements = [];
             const getWebElements = createSpy().andReturn(elements);
             const checkElementsCountIs = checkElementsCountIsFactory(getWebElements);
 
-            await checkElementsCountIs(elements, 5, waitTimeout)(driver);
+            await checkElementsCountIs(elements, 5)(driver);
 
-            expect(getWebElements).toHaveBeenCalledWith(elements, driver, waitTimeout);
+            expect(getWebElements).toHaveBeenCalledWith(elements, driver);
         });
 
         it('resolves to true if count matches expected one', async () => {
@@ -22,7 +20,7 @@ describe('elementsCountIs', () => {
             const getWebElements = createSpy().andReturn(elements);
             const checkElementsCountIs = checkElementsCountIsFactory(getWebElements);
 
-            const result = await checkElementsCountIs(elements, 5, waitTimeout)(driver);
+            const result = await checkElementsCountIs(elements, 5)(driver);
 
             expect(result).toBe(true);
         });
@@ -32,7 +30,7 @@ describe('elementsCountIs', () => {
             const getWebElements = createSpy().andReturn(elements);
             const checkElementsCountIs = checkElementsCountIsFactory(getWebElements);
 
-            const result = await checkElementsCountIs(elements, 5, waitTimeout)(driver);
+            const result = await checkElementsCountIs(elements, 5)(driver);
 
             expect(result).toBe(false);
         });

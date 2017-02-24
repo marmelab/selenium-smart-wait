@@ -11,8 +11,6 @@ describe('getWebElement', () => {
         findElement: createSpy().andReturn(Promise.resolve(locatedElement)),
     };
 
-    const waitTimeout = 10000;
-
     it('returns the given webelement directly if it is a WebElement', async () => {
         const element = new WebElement(driver, 'foo');
 
@@ -24,15 +22,15 @@ describe('getWebElement', () => {
     it('waits for the element with the given selector to be located', async () => {
         const selector = By.css('.foo');
 
-        await getWebElement(selector, driver, waitTimeout);
+        await getWebElement(selector, driver);
 
-        expect(driver.wait).toHaveBeenCalledWith(until.elementLocated(selector, waitTimeout));
+        expect(driver.wait).toHaveBeenCalledWith(until.elementLocated(selector));
     });
 
     it('returns the element with the given selector to be located', async () => {
         const selector = By.css('.foo');
 
-        const result = await getWebElement(selector, driver, waitTimeout);
+        const result = await getWebElement(selector, driver);
 
         expect(result).toBe(locatedElement);
     });

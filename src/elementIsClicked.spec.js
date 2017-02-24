@@ -4,8 +4,6 @@ import { checkElementIsClickedFactory } from './elementIsClicked';
 describe('elementIsClicked', () => {
     const driver = 'driver';
 
-    const waitTimeout = 10000;
-
     describe('checkElementIsClicked', () => {
         it('gets the webelement', async () => {
             const element = {
@@ -16,9 +14,9 @@ describe('elementIsClicked', () => {
             const getWebElement = createSpy().andReturn(element);
             const checkElementIsClicked = checkElementIsClickedFactory(getWebElement);
 
-            await checkElementIsClicked(element, waitTimeout)(driver);
+            await checkElementIsClicked(element)(driver);
 
-            expect(getWebElement).toHaveBeenCalledWith(element, driver, waitTimeout);
+            expect(getWebElement).toHaveBeenCalledWith(element, driver);
         });
 
         it('resolves to true if the call to element.click succeeds', async () => {
@@ -30,7 +28,7 @@ describe('elementIsClicked', () => {
             const getWebElement = createSpy().andReturn(element);
             const checkElementIsClicked = checkElementIsClickedFactory(getWebElement);
 
-            const result = await checkElementIsClicked(element, waitTimeout)(driver);
+            const result = await checkElementIsClicked(element)(driver);
 
             expect(result).toBe(true);
         });
@@ -44,7 +42,7 @@ describe('elementIsClicked', () => {
             const getWebElement = createSpy().andReturn(element);
             const checkElementIsClicked = checkElementIsClickedFactory(getWebElement);
 
-            const result = await checkElementIsClicked(element, waitTimeout)(driver);
+            const result = await checkElementIsClicked(element)(driver);
 
             expect(result).toBe(false);
         });

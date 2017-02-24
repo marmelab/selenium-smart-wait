@@ -1,11 +1,11 @@
 import { until, WebElement } from 'selenium-webdriver';
 
-export default async function getWebElement(elementOrSelector, driver, waitTimeout) {
+export default async (elementOrSelector, driver) => {
     if (elementOrSelector instanceof WebElement) {
         return elementOrSelector;
     }
 
-    await driver.wait(until.elementLocated(elementOrSelector, waitTimeout));
+    await driver.wait(until.elementLocated(elementOrSelector));
 
     return driver.findElement(elementOrSelector);
-}
+};

@@ -27,8 +27,10 @@ Simply import the exported conditions and pass them to `driver.wait`:
 import { elementValueIs } from 'selenium-smart-wait';
 import { By } from 'selenium-webdriver';
 
+const TIMEOUT = 5000;
+
 // ... mocha, jasmine, whatever ...
-await driver.wait(elementValueIs(By.css('.my-input'), 'expected value'));
+await driver.wait(elementValueIs(By.css('.my-input'), 'expected value'), TIMEOUT);
 
 ```
 

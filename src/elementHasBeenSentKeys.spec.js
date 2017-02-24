@@ -4,8 +4,6 @@ import { checkElementHasBeenSentKeysFactory } from './elementHasBeenSentKeys';
 describe('elementHasBeenSentKeys', () => {
     const driver = 'driver';
 
-    const waitTimeout = 10000;
-
     describe('checkElementHasBeenSentKeys', () => {
         it('gets the webelement', async () => {
             const element = {
@@ -17,9 +15,9 @@ describe('elementHasBeenSentKeys', () => {
             const getWebElement = createSpy().andReturn(element);
             const checkElementHasBeenSentKeys = checkElementHasBeenSentKeysFactory(getWebElement);
 
-            await checkElementHasBeenSentKeys(element, waitTimeout)(driver);
+            await checkElementHasBeenSentKeys(element)(driver);
 
-            expect(getWebElement).toHaveBeenCalledWith(element, driver, waitTimeout);
+            expect(getWebElement).toHaveBeenCalledWith(element, driver);
         });
 
         it('resolves to true if the call to element.sendKeys succeeds', async () => {
@@ -32,7 +30,7 @@ describe('elementHasBeenSentKeys', () => {
             const getWebElement = createSpy().andReturn(element);
             const checkElementHasBeenSentKeys = checkElementHasBeenSentKeysFactory(getWebElement);
 
-            const result = await checkElementHasBeenSentKeys(element, waitTimeout)(driver);
+            const result = await checkElementHasBeenSentKeys(element)(driver);
 
             expect(result).toBe(true);
         });
@@ -47,7 +45,7 @@ describe('elementHasBeenSentKeys', () => {
             const getWebElement = createSpy().andReturn(element);
             const checkElementHasBeenSentKeys = checkElementHasBeenSentKeysFactory(getWebElement);
 
-            const result = await checkElementHasBeenSentKeys(element, waitTimeout)(driver);
+            const result = await checkElementHasBeenSentKeys(element)(driver);
 
             expect(result).toBe(false);
         });
