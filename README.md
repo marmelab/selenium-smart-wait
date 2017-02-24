@@ -32,6 +32,15 @@ await driver.wait(elementValueIs(By.css('.my-input'), 'expected value'));
 
 ```
 
+All conditions expect either an existing [WebElement](http://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index_exports_WebElement.html)
+or a `locator` (see selenium webdriver documentation on [WebDriver](http://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index_exports_WebDriver.html),
+especially the `findElement` and `findElements` methods).
+
+## API
+
+- `elementValueIs`: wait until the element has the specified value. *You should only pass input elements to this condition.*
+- `elementIsClicked`: wait until the element has been successfully clicked.
+
 ## Contributing
 
 Coverage data is available in `./coverage` after executing `make test`.
