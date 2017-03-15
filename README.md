@@ -60,6 +60,18 @@ for details about them):
 - `elementTextMatches`
 - `stalenessOf`
 
+Use them like this:
+
+```js
+import { stalenessOf } from 'selenium-smart-wait';
+import { By } from 'selenium-webdriver';
+
+const TIMEOUT = 5000;
+
+// ... mocha, jasmine, whatever ...
+await driver.wait(stalenessOf(By.css('.my-input')), TIMEOUT);
+```
+
 ## Contributing
 
 Coverage data is available in `./coverage` after executing `make test`.
