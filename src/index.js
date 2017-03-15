@@ -1,5 +1,8 @@
 import { until } from 'selenium-webdriver';
 import transformElementCondition from './transformElementCondition';
+import stalenessOfImpl from './stalenessOf';
+
+export const stalenessOf = transformElementCondition(stalenessOfImpl);
 
 export { default as elementsCountIs } from './elementsCountIs';
 export { default as elementHasBeenSentKeys } from './elementHasBeenSentKeys';
@@ -15,4 +18,3 @@ export const elementIsVisible = transformElementCondition(until.elementIsVisible
 export const elementTextContains = transformElementCondition(until.elementTextContains);
 export const elementTextIs = transformElementCondition(until.elementTextIs);
 export const elementTextMatches = transformElementCondition(until.elementTextMatches);
-export const stalenessOf = transformElementCondition(until.stalenessOf);
