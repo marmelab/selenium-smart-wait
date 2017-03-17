@@ -1,6 +1,6 @@
 {
   "name": "selenium-smart-wait",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Conditions for common usage of selenium-webdriver",
   "main": "./lib/index.js",
   "repository": "https://github.com/marmelab/selenium-smart-wait.git",
