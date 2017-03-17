@@ -7,7 +7,7 @@ describe('getWebElement', () => {
 
     const driver = {
         controlFlow: () => ({ promise: () => {} }),
-        wait: createSpy(),
+        wait: createSpy().andReturn(Promise.resolve()),
         findElement: createSpy().andReturn(Promise.resolve(locatedElement)),
     };
 

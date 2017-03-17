@@ -1,45 +1,38 @@
 import expect, { createSpy } from 'expect';
-import { transformElementConditionFactory } from './transformElementCondition';
+import { wrappedConditionFactory } from './transformElementCondition';
 
 describe('transformElementCondition', () => {
-    const driver = 'driver';
+    const driver = {
+        wait: createSpy().andReturn(Promise.resolve()),
+    };
 
     const element = 'element';
-    const getWebElement = createSpy().andReturn(element);
+    const getWebElement = createSpy().andReturn(Promise.resolve(element));
 
-    describe('transformElementCondition', () => {
+    describe('wrappedConditionFactory', () => {
         it('gets the webelement', async () => {
-            const transformElementCondition = transformElementConditionFactory(getWebElement)(() => {});
+            const transformElementCondition = wrappedConditionFactory(getWebElement);
 
-            await transformElementCondition(element)(driver);
+            await transformElementCondition(() => {}, element)(driver);
 
             expect(getWebElement).toHaveBeenCalledWith(element, driver);
         });
 
         it('calls the given condition with the retrieved element', async () => {
             const condition = createSpy();
-            const transformElementCondition = transformElementConditionFactory(getWebElement)(condition);
+            const transformElementCondition = wrappedConditionFactory(getWebElement);
 
-            await transformElementCondition(element)(driver);
+            await transformElementCondition(condition, element, 1000)(driver);
 
             expect(condition).toHaveBeenCalledWith(element);
         });
 
         it('calls the given condition with the retrieved element and any additional arguments', async () => {
             const condition = createSpy();
-            const transformElementCondition = transformElementConditionFactory(getWebElement)(condition);
+            const transformElementCondition = wrappedConditionFactory(getWebElement);
 
-            await transformElementCondition(element, 'foo', 'bar')(driver);
+            await transformElementCondition(condition, element, 'foo', 'bar', 1000)(driver);
             expect(condition).toHaveBeenCalledWith(element, 'foo', 'bar');
-        });
-
-        it('returns the given condition result', async () => {
-            const condition = createSpy().andReturn(Promise.resolve('foo'));
-            const transformElementCondition = transformElementConditionFactory(getWebElement)(condition);
-
-            const result = await transformElementCondition(element)(driver);
-
-            expect(result).toEqual('foo');
         });
     });
 });

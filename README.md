@@ -25,12 +25,11 @@ Simply import the exported conditions and pass them to `driver.wait`:
 
 ```js
 import { elementValueIs } from 'selenium-smart-wait';
-import { By } from 'selenium-webdriver';
 
 const TIMEOUT = 5000;
 
 // ... mocha, jasmine, whatever ...
-await driver.wait(elementValueIs(By.css('.my-input'), 'expected value'), TIMEOUT);
+await driver.wait(elementValueIs('.my-input', 'expected value'), TIMEOUT);
 
 ```
 
@@ -47,7 +46,9 @@ especially the `findElement` and `findElements` methods) or a string. If a strin
 
 Some conditions from `selenium-webdriver` have also been added but you can now pass them a `locator` too (please refer to the
 selenium webdriver [documentation](http://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/lib/until.html)
-for details about them):
+for details about them).
+
+> *Important*: You must pass a timeout number as the *last* argument when calling these conditions:
 
 - `elementIsDisabled`
 - `elementIsEnabled`
@@ -64,12 +65,11 @@ Use them like this:
 
 ```js
 import { stalenessOf } from 'selenium-smart-wait';
-import { By } from 'selenium-webdriver';
 
 const TIMEOUT = 5000;
 
 // ... mocha, jasmine, whatever ...
-await driver.wait(stalenessOf(By.css('.my-input')), TIMEOUT);
+await driver.wait(stalenessOf('.my-input', TIMEOUT));
 ```
 
 ## Contributing
