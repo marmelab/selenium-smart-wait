@@ -2,7 +2,7 @@ import { until, By, WebElement } from 'selenium-webdriver';
 
 export default (elementOrLocator, driver) => {
     if (elementOrLocator instanceof WebElement) {
-        return elementOrLocator;
+        return Promise.resolve(elementOrLocator);
     }
 
     let locator = elementOrLocator;
