@@ -5,13 +5,18 @@ export const checkStalenessOfFactory = stalenessOfImpl => elementOrLocator =>
         let element = elementOrLocator;
 
         if (elementOrLocator && !(elementOrLocator instanceof WebElement)) {
+            element = null;
             let locator = elementOrLocator;
 
             if (typeof elementOrLocator === 'string') {
                 locator = By.css(elementOrLocator);
             }
 
-            element = await driver.findElement(locator).catch(() => null);
+            const elements = await driver.findElements(locator);
+
+            if (elements.length > 0) {
+                element = elements[0];
+            }
         }
 
         if (!element) {
