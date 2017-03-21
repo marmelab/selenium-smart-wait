@@ -12,11 +12,7 @@ export const checkStalenessOfFactory = stalenessOfImpl => elementOrLocator =>
                 locator = By.css(elementOrLocator);
             }
 
-            const elements = await driver.findElements(locator);
-
-            if (elements.length > 0) {
-                element = elements[0];
-            }
+            [element] = await driver.findElements(locator);
         }
 
         if (!element) {
