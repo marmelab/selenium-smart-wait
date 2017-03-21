@@ -1,9 +1,19 @@
-import { Condition, until } from 'selenium-webdriver';
+import { By, Condition, until, WebElement } from 'selenium-webdriver';
 
-import transformElementCondition from './transformElementCondition';
-
-export const checkStalenessOfFactory = stalenessOfImpl => (element) =>
+export const checkStalenessOfFactory = stalenessOfImpl => elementOrLocator =>
     async (driver) => {
+        let element = elementOrLocator;
+
+        if (elementOrLocator && !(elementOrLocator instanceof WebElement)) {
+            let locator = elementOrLocator;
+
+            if (typeof elementOrLocator === 'string') {
+                locator = By.css(elementOrLocator);
+            }
+
+            element = await driver.findElement(locator).catch(() => null);
+        }
+
         if (!element) {
             return Promise.resolve(true);
         }
@@ -11,7 +21,5 @@ export const checkStalenessOfFactory = stalenessOfImpl => (element) =>
         return stalenessOfImpl(element);
     };
 
-export const stalenessOfCondition = (element) =>
-    new Condition('until element is stale', checkStalenessOfFactory(until.stalenessOf)(element));
-
-export default transformElementCondition(stalenessOfCondition);
+export default elementOrLocator =>
+    new Condition('until element is stale', checkStalenessOfFactory(until.stalenessOf)(elementOrLocator));
