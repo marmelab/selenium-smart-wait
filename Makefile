@@ -28,5 +28,13 @@ watch-test:
 		--watch \
 		"./src/**/*.spec.js"
 
+test-e2e: ## Run e2e selenium tests
+	NODE_ENV=test SELENIUM_BROWSER_BINARY_PATH="./node_modules/selenium-standalone/.selenium/chromedriver/2.24-x64-chromedriver" \
+		./node_modules/.bin/mocha \
+		--require babel-polyfill \
+		--compilers="js:babel-core/register" \
+		--recursive \
+		"./e2e/tests/**/*.spec.js"
+
 lint:
 	./node_modules/.bin/eslint ./src

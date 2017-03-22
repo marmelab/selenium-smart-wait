@@ -4,7 +4,7 @@ export default port =>
     new Promise((resolve, reject) => {
         try {
             const server = new StaticServer({
-                rootPath: '../node_modules/todomvc/examples/vanillajs',
+                rootPath: `${__dirname}/../node_modules/todomvc/examples/vanillajs`,
                 port,
             });
 
