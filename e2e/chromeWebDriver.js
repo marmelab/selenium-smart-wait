@@ -4,7 +4,7 @@ import logging from 'selenium-webdriver/lib/logging';
 
 const chromePath = `${__dirname}/../${process.env.SELENIUM_BROWSER_BINARY_PATH}`;
 const service = new chrome.ServiceBuilder(chromePath).build();
-const DEFAULT_WAIT_TIMEOUT = 9000; // A bit less than mocha's timeout to get explicit errors from selenium
+const DEFAULT_WAIT_TIMEOUT = 1000;
 
 chrome.setDefaultService(service);
 

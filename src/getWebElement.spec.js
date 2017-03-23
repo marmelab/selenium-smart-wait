@@ -7,7 +7,6 @@ describe('getWebElement', () => {
 
     const driver = {
         controlFlow: () => ({ promise: () => {} }),
-        wait: createSpy().andReturn(Promise.resolve()),
         findElement: createSpy().andReturn(Promise.resolve(locatedElement)),
     };
 
@@ -24,7 +23,7 @@ describe('getWebElement', () => {
 
         await getWebElement(locator, driver);
 
-        expect(driver.wait).toHaveBeenCalledWith(until.elementLocated(By.css(locator)));
+        expect(driver.findElement).toHaveBeenCalledWith(By.css(locator));
     });
 
     it('waits for the element with the given locator to be located', async () => {
@@ -32,7 +31,7 @@ describe('getWebElement', () => {
 
         await getWebElement(locator, driver);
 
-        expect(driver.wait).toHaveBeenCalledWith(until.elementLocated(locator));
+        expect(driver.findElement).toHaveBeenCalledWith(locator);
     });
 
     it('returns the element with the given locator to be located', async () => {
