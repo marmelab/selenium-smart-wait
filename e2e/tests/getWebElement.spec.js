@@ -1,14 +1,10 @@
 import expect from 'expect';
-import { By, Key } from 'selenium-webdriver';
+import { By } from 'selenium-webdriver';
 
 import driver from '../chromeWebDriver';
 import getWebElement from '../../src/getWebElement';
 
-const addTodo = async (d, text = 'new') => {
-    const newTodo = await d.findElement(By.css('#new-todo'));
-    await newTodo.sendKeys(text);
-    newTodo.sendKeys(Key.ENTER); // do not wait for todo to be validated before returning
-};
+import { addTodo } from './helper';
 
 describe('e2e', () => {
     describe('getWebElement', () => {
