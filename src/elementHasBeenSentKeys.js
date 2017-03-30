@@ -2,7 +2,7 @@ import { Condition } from 'selenium-webdriver';
 import getWebElement from './getWebElement';
 
 export const checkElementHasBeenSentKeysFactory = getWebElementImpl =>
-    elementOrLocator =>
+    (elementOrLocator, keys) =>
         async (driver) => {
             const element = await getWebElementImpl(elementOrLocator, driver);
 
@@ -19,13 +19,13 @@ export const checkElementHasBeenSentKeysFactory = getWebElementImpl =>
             if (!isDisplayed || !isEnabled) return null;
 
             return element
-                    .sendKeys('')
+                    .sendKeys(keys)
                     .then(() => true)
                     .catch(() => false);
         };
 
 export const elementHasBeenSentKeysFactory = checkElementHasBeenSentKeys =>
-    elementOrLocator =>
-        new Condition('until element has been sent keys', checkElementHasBeenSentKeys(elementOrLocator));
+    (elementOrLocator, keys) =>
+        new Condition('until element has been sent keys', checkElementHasBeenSentKeys(elementOrLocator, keys));
 
 export default elementHasBeenSentKeysFactory(checkElementHasBeenSentKeysFactory(getWebElement));
