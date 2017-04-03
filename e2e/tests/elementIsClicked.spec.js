@@ -25,5 +25,10 @@ describe('e2e', () => {
             const error = await driver.wait(elementIsClicked('.not-found', 1000)).catch(e => e);
             expect(error.message).toContain('Unable to locate element:');
         });
+
+        after(async () => {
+            await driver.executeScript('localStorage.clear();');
+            await driver.executeScript('sessionStorage.clear();');
+        });
     });
 });

@@ -35,5 +35,10 @@ describe('e2e', () => {
             const newTodo = await getWebElement('.view', driver);
             expect(await newTodo.getText()).toBe('new todo');
         });
+
+        after(async () => {
+            await driver.executeScript('localStorage.clear();');
+            await driver.executeScript('sessionStorage.clear();');
+        });
     });
 });

@@ -27,5 +27,10 @@ describe('e2e', () => {
             await driver.wait(elementIsClicked('#filters li:nth-child(3) a', 1000));
             await driver.wait(stalenessOf(todo, 1000));
         });
+
+        after(async () => {
+            await driver.executeScript('localStorage.clear();');
+            await driver.executeScript('sessionStorage.clear();');
+        });
     });
 });
