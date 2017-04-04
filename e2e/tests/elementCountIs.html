@@ -1,0 +1,19 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>elementCountIs</title>
+</head>
+<body>
+    <ul id="list"></ul>
+    <button id="add" onClick="addItem()">Add</button>
+    <script>
+        let i = 0;
+        const list = document.getElementById('list');
+        function addItem() {
+            const li = document.createElement('li');
+            li.innerText = i++;
+            list.appendChild(li);
+        }
+    </script>
+</body>
+</html>

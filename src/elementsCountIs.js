@@ -11,6 +11,6 @@ export const checkElementsCountIsFactory = getWebElementsImpl =>
 
 export const elementsCountIsFactory = checkElementsCountIs =>
     (elementOrLocator, count) =>
-        new Condition('until elements count is', checkElementsCountIs(elementOrLocator, count));
+        new Condition(`until elements count is ${count}`, checkElementsCountIs(elementOrLocator, count));
 
 export default elementsCountIsFactory(checkElementsCountIsFactory(getWebElements));
