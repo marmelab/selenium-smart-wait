@@ -1,6 +1,5 @@
 import expect from 'expect';
 import { until, By } from 'selenium-webdriver';
-import { addTodo } from './helper';
 
 import driver from '../chromeWebDriver';
 import { elementsCountIs, elementIsClicked } from '../../src';

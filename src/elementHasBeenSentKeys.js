@@ -16,7 +16,9 @@ export const checkElementHasBeenSentKeysFactory = getWebElementImpl =>
                 throw new Error('Invalid element: must be an input or a textarea');
             }
 
-            if (!isDisplayed || !isEnabled) return null;
+            if (!isDisplayed || !isEnabled) {
+                throw new Error('Invalid element: must enable and visible');
+            }
 
             return element
                     .sendKeys(keys)

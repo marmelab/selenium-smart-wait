@@ -1,6 +1,5 @@
 import expect from 'expect';
-import { until, By } from 'selenium-webdriver';
-import { addTodo } from './helper';
+import { By } from 'selenium-webdriver';
 
 import driver from '../chromeWebDriver';
 import { elementIsClicked } from '../../src';
@@ -8,17 +7,15 @@ import { elementIsClicked } from '../../src';
 describe('e2e', () => {
     describe('elementIsClicked', () => {
         before(async () => {
-            await driver.get('http://localhost:3000');
-            await driver.wait(until.elementLocated(By.css('#header h1')));
-            await addTodo(driver);
+            await driver.get('http://localhost:3000/elementIsClicked.html');
         });
 
         it('should click element', async () => {
-            let selectedFilter = await driver.findElement(By.css('.selected'));
-            expect(await selectedFilter.getText()).toBe('All');
-            await driver.wait(elementIsClicked('#filters li:nth-child(2) a', 1000));
-            selectedFilter = await driver.findElement(By.css('.selected'));
-            expect(await selectedFilter.getText()).toBe('Active');
+            let btn = await driver.findElement(By.css('#button'));
+            expect(await btn.getText()).toBe('Click');
+            await driver.wait(elementIsClicked('#button', 1000));
+            btn = await driver.findElement(By.css('#button'));
+            expect(await btn.getText()).toBe('clicked');
         });
 
         it('should be rejected if element do not exists', async () => {

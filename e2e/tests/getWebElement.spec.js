@@ -4,36 +4,35 @@ import { By } from 'selenium-webdriver';
 import driver from '../chromeWebDriver';
 import getWebElement from '../../src/getWebElement';
 
-import { addTodo } from './helper';
-
 describe('e2e', () => {
     describe('getWebElement', () => {
         before(async () => {
-            await driver.get('http://localhost:3000');
+            await driver.get('http://localhost:3000/getWebElement.html');
         });
 
         it('should return element when given a css selector', async () => {
-            const el1 = await getWebElement('#header h1', driver);
+            const el1 = await getWebElement('#button', driver);
 
-            expect(await el1.getText()).toEqual('todos');
+            expect(await el1.getText()).toEqual('Click');
         });
 
         it('should return element when given a locator', async () => {
-            const el1 = await getWebElement(By.css('#header h1'), driver);
+            const el1 = await getWebElement(By.css('#button'), driver);
 
-            expect(await el1.getText()).toEqual('todos');
+            expect(await el1.getText()).toEqual('Click');
         });
 
         it('should reject when no element correspond', async () => {
-            const error = await getWebElement(By.css('.not-found'), driver).catch(e => e);
+            const error = await getWebElement(By.css('#container p'), driver).catch(e => e);
 
-            expect(error.message).toContain('no such element: Unable to locate element: {"method":"css selector","selector":".not-found"}');
+            expect(error.message).toContain('no such element: Unable to locate element: {"method":"css selector","selector":"#container p"}');
         });
 
-        it('should return even element when it appear afterward', async () => {
-            await addTodo(driver, 'new todo');
-            const newTodo = await getWebElement('.view', driver);
-            expect(await newTodo.getText()).toBe('new todo');
+        it('should return element even when it appear afterward', async () => {
+            await driver.findElement(By.css('#button')).click();
+
+            const el1 = await getWebElement(By.css('#container p'), driver);
+            expect(await el1.getText()).toEqual('hello');
         });
 
         after(async () => {
