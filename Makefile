@@ -11,7 +11,7 @@ build: clean
 		--ignore=*.spec.js \
 		src
 
-test:
+test-unit:
 	NODE_ENV=test ./node_modules/.bin/nyc \
 		./node_modules/.bin/mocha \
 		--opts ./mocha.opts \
@@ -35,6 +35,8 @@ test-e2e: ## Run e2e selenium tests
 		--compilers="js:babel-core/register" \
 		--recursive \
 		"./e2e/tests/**/*.spec.js"
+
+test: test-unit test-e2e
 
 lint:
 	./node_modules/.bin/eslint ./src
