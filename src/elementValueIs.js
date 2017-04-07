@@ -10,7 +10,6 @@ export const checkElementValueIsFactory = getWebElementImpl =>
 
 export const elementValueIsFactory = checkElementValueIs =>
     (elementOrLocator, value) =>
-        new Condition('until element value is', checkElementValueIs(elementOrLocator, value));
+        new Condition(`until element value is ${value}`, checkElementValueIs(elementOrLocator, value));
 
 export default elementValueIsFactory(checkElementValueIsFactory(getWebElement));
-

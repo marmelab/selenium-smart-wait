@@ -1,6 +1,6 @@
 import { By, Condition, until, WebElement } from 'selenium-webdriver';
 
-export const checkStalenessOfFactory = stalenessOfImpl => elementOrLocator =>
+export const checkStalenessOfFactory = stalenessOfImpl => (elementOrLocator, timeout) =>
     async (driver) => {
         let element = elementOrLocator;
 
@@ -19,8 +19,8 @@ export const checkStalenessOfFactory = stalenessOfImpl => elementOrLocator =>
             return Promise.resolve(true);
         }
 
-        return stalenessOfImpl(element);
+        return driver.wait(stalenessOfImpl(element), timeout);
     };
 
-export default elementOrLocator =>
-    new Condition('until element is stale', checkStalenessOfFactory(until.stalenessOf)(elementOrLocator));
+export default (elementOrLocator, timeout) =>
+    new Condition('until element is stale', checkStalenessOfFactory(until.stalenessOf)(elementOrLocator, timeout));

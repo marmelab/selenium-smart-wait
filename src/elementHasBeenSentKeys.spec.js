@@ -7,8 +7,8 @@ describe('elementHasBeenSentKeys', () => {
     describe('checkElementHasBeenSentKeys', () => {
         it('gets the webelement', async () => {
             const element = {
-                isDisplayed: createSpy().andReturn(Promise.resolve()),
-                isEnabled: createSpy().andReturn(Promise.resolve()),
+                isDisplayed: createSpy().andReturn(Promise.resolve(true)),
+                isEnabled: createSpy().andReturn(Promise.resolve(true)),
                 getTagName: createSpy().andReturn(Promise.resolve('input')),
                 sendKeys: createSpy().andReturn(Promise.resolve()),
             };

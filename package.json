@@ -27,9 +27,12 @@
     "istanbul-cobertura-badger": "~1.2.1",
     "mocha": "~3.2.0",
     "nyc": "~10.1.2",
-    "selenium-webdriver": "~3.1.0"
+    "selenium-standalone": "6.0.1",
+    "selenium-webdriver": "~3.1.0",
+    "static-server": "2.0.4"
   },
-  "dependencies": {},
+  "dependencies": {
+  },
   "peerDependencies": {
     "selenium-webdriver": "~3.1.0"
   }

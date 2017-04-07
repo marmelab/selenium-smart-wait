@@ -1,9 +1,7 @@
 import { until } from 'selenium-webdriver';
 import transformElementCondition from './transformElementCondition';
-import stalenessOfImpl from './stalenessOf';
 
-export const stalenessOf = transformElementCondition(stalenessOfImpl);
-
+export { default as stalenessOf } from './stalenessOf';
 export { default as elementsCountIs } from './elementsCountIs';
 export { default as elementHasBeenSentKeys } from './elementHasBeenSentKeys';
 export { default as elementIsClicked } from './elementIsClicked';

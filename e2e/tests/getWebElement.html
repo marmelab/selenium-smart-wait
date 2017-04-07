@@ -1,0 +1,21 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>getWebElement</title>
+</head>
+<body>
+    <button id="button" onClick="onClick()">Click</button>
+    <div id="container"></div>
+    <script>
+        let i = 0;
+        const container = document.getElementById('container');
+        function onClick() {
+            setTimeout(() => {
+                const p = document.createElement('p');
+                p.innerText = 'hello';
+                container.appendChild(p);
+            }, 500);
+        }
+    </script>
+</body>
+</html>

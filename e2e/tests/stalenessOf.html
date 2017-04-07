@@ -1,0 +1,18 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>stalenessOf</title>
+</head>
+<body>
+    <button id="button" onClick="onClick()">Click</button>
+    <p id="hello">hello</p>
+    <script>
+        function onClick() {
+            setTimeout(() => {
+                const p = document.getElementById('hello');
+                p.remove();
+            }, 500);
+        }
+    </script>
+</body>
+</html>

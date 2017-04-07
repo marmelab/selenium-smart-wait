@@ -1,4 +1,4 @@
-import { until, By, WebElement } from 'selenium-webdriver';
+import { By, WebElement } from 'selenium-webdriver';
 
 export default (elementOrLocator, driver) => {
     if (elementOrLocator instanceof WebElement) {
@@ -11,7 +11,5 @@ export default (elementOrLocator, driver) => {
         locator = By.css(elementOrLocator);
     }
 
-    return driver
-        .wait(until.elementLocated(locator))
-        .then(() => driver.findElement(locator));
+    return driver.findElement(locator);
 };
