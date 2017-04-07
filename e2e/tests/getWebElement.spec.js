@@ -34,10 +34,5 @@ describe('e2e', () => {
             const el1 = await getWebElement(By.css('#container p'), driver);
             expect(await el1.getText()).toEqual('hello');
         });
-
-        after(async () => {
-            await driver.executeScript('localStorage.clear();');
-            await driver.executeScript('sessionStorage.clear();');
-        });
     });
 });
