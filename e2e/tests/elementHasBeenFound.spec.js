@@ -5,7 +5,7 @@ import driver from '../chromeWebDriver';
 import elementHasBeenFound from '../../src/elementHasBeenFound';
 
 describe('e2e', () => {
-    describe.only('elementHasBeenFound', () => {
+    describe('elementHasBeenFound', () => {
         before(async () => {
             await driver.get('http://localhost:3000/getWebElement.html');
         });

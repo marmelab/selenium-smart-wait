@@ -1,11 +1,7 @@
-import { By, WebElement, WebElementCondition } from 'selenium-webdriver';
+import { By, WebElementCondition } from 'selenium-webdriver';
 
-export const elementHasBeenFoundFn = elementOrLocator => async driver => {
+export const elementHasBeenFoundFn = elementOrLocator => async (driver) => {
     try {
-        if (elementOrLocator instanceof WebElement) {
-            return Promise.resolve(elementOrLocator);
-        }
-
         let locator = elementOrLocator;
 
         if (typeof elementOrLocator === 'string') {
