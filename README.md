@@ -48,6 +48,7 @@ especially the `findElement` and `findElements` methods) or a string. If a strin
 
 ## API
 
+- `elementHasBeenFound`: wait until the element has been found, and return it.
 - `elementsCountIs`: wait until the specified count of elements is found.
 - `elementValueIs`: wait until the element has the specified value. *You should only pass input elements to this condition.*
 - `elementIsClicked`: wait until the element has been successfully clicked.
